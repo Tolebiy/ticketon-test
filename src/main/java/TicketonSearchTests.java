@@ -15,7 +15,7 @@ public class TicketonSearchTests {
         String baseUrl = "https://ticketon.kz/";
 
         try {
-            System.out.println("Запуск UI автотестов для модуля 'Глобальный поиск'...");
+            System.out.println("Запуск тестов...");
             testValidSearch(driver, wait, baseUrl);
             testEmptySearch(driver, wait, baseUrl);
             testSpecialCharsSearch(driver, wait, baseUrl);
@@ -24,7 +24,6 @@ public class TicketonSearchTests {
         }
     }
 
-    // Тест 1
     public static void testValidSearch(WebDriver driver, WebDriverWait wait, String baseUrl) {
         driver.get(baseUrl);
         WebElement searchInput = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='search']")));
@@ -34,7 +33,6 @@ public class TicketonSearchTests {
         System.out.println("Тест 1 (Валидный поиск): ПРОЙДЕН");
     }
 
-    // Тест 2
     public static void testEmptySearch(WebDriver driver, WebDriverWait wait, String baseUrl) {
         driver.get(baseUrl);
         WebElement searchInput = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='search']")));
@@ -42,11 +40,10 @@ public class TicketonSearchTests {
         if (!driver.getCurrentUrl().contains("search")) {
             System.out.println("Тест 2 (Пустой поиск): ПРОЙДЕН");
         } else {
-            System.out.println("Тест 2: ПРОВАЛЕН (Осуществлен переход по пустому запросу)");
+            System.out.println("Тест 2: ПРОВАЛЕН");
         }
     }
-
-    // Тест 3
+    
     public static void testSpecialCharsSearch(WebDriver driver, WebDriverWait wait, String baseUrl) {
         driver.get(baseUrl);
         WebElement searchInput = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='search']")));
@@ -58,7 +55,7 @@ public class TicketonSearchTests {
                 System.out.println("Тест 3 (Безопасность поля): ПРОЙДЕН");
             }
         } catch (Exception e) {
-            System.out.println("Тест 3: ПРОВАЛЕН (Некорректная обработка спецсимволов или системная ошибка)");
+            System.out.println("Тест 3: ПРОВАЛЕН");
         }
     }
 }
